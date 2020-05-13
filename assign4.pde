@@ -20,8 +20,27 @@ final int START_BUTTON_HEIGHT = 60;
 final int START_BUTTON_X = 248;
 final int START_BUTTON_Y = 360;
 
-float[] cabbageX, cabbageY, soldierX, soldierY;
+//float[] cabbageX, cabbageY, soldierX, soldierY;
+
+float cabbageX=floor(random(0,8))*SOIL_SIZE;
+float cabbageY1=floor(random(0,4))*SOIL_SIZE;
+float cabbageY2=floor(random(5,9))*SOIL_SIZE;
+float cabbageY3=floor(random(10,14))*SOIL_SIZE;
+float cabbageY4=floor(random(15,19))*SOIL_SIZE;
+float cabbageY5=floor(random(20,24))*SOIL_SIZE;
+
+float soldierX=floor(random(0,8))*SOIL_SIZE;
+float soldierY1=floor(random(0,4))*SOIL_SIZE;
+float soldierY2=floor(random(5,9))*SOIL_SIZE;
+float soldierY3=floor(random(10,14))*SOIL_SIZE;
+float soldierY4=floor(random(15,19))*SOIL_SIZE;
+float soldierY5=floor(random(20,24))*SOIL_SIZE;
 float soldierSpeed = 2f;
+
+
+int soilEmptyY;
+int soilEmptyX1=floor(random(0,8))*SOIL_SIZE;
+int soilEmptyX2=floor(random(0,8))*SOIL_SIZE;
 
 float playerX, playerY;
 int playerCol, playerRow;
@@ -81,6 +100,8 @@ void setup() {
 		}
 	}
 
+  
+
 	// Initialize player
 	playerX = PLAYER_INIT_X;
 	playerY = PLAYER_INIT_Y;
@@ -95,8 +116,14 @@ void setup() {
 		for (int j = 0; j < soilHealth[i].length; j++) {
 			 // 0: no soil, 15: soil only, 30: 1 stone, 45: 2 stones
 			soilHealth[i][j] = 15;
+      for (int m=0;m<8;m++){
+     
+      soilHealth[m][m] = 30;
+    }
+    
 		}
 	}
+
 
 	// Initialize soidiers and their position
 
@@ -163,9 +190,90 @@ void draw() {
 			}
 		}
 
+     for (int i=0;i<8;i++){
+       if(i==0||i<8){        
+      int stoneX =i*SOIL_SIZE;
+      int stoneY =i*SOIL_SIZE;
+      image (stones[0][4],stoneX,stoneY);
+      soilHealth[i][i] = 30;
+    }
+     }
+     
+     for(int i=0; i<=9; i++){
+        for(int j=10; j<18; j++){
+          
+          if(i%4 == 1 || i%4 ==2){
+            
+            if(j%4 == 1 || j%4 ==2){
+              image(stones[0][4], SOIL_SIZE*i, SOIL_SIZE*j-SOIL_SIZE*2);
+              
+            }else if(j%4 == 0 || j%4 == 3){
+              image(stones[0][4], SOIL_SIZE*i-SOIL_SIZE*2, SOIL_SIZE*j-SOIL_SIZE*2); 
+            }
+          }
+          
+        }
+      }
+      
+      for(int i=0; i<=9; i++){
+        for(int j=18; j<26; j++){
+          
+          if(i%3 == 1 || i%3 == 2){
+           
+            if(j%3 == 0){
+             image(stones[0][4], SOIL_SIZE*i, SOIL_SIZE*j-SOIL_SIZE*2);
+            }else if(j%3 == 1){
+             image(stones[0][4], SOIL_SIZE*i-SOIL_SIZE, SOIL_SIZE*j-SOIL_SIZE*2);
+            }else{
+             image(stones[0][4], SOIL_SIZE*i-SOIL_SIZE*2, SOIL_SIZE*j-SOIL_SIZE*2);
+            }
+           
+          }
+          
+          if(i%3 == 2){
+            
+            if(j%3 ==0){
+              image(stones[1][4], SOIL_SIZE*i, SOIL_SIZE*j-SOIL_SIZE*2);
+            }else if(j%3 ==1){
+              image(stones[1][4], SOIL_SIZE*i-SOIL_SIZE, SOIL_SIZE*j-SOIL_SIZE*2);
+            }else{
+              image(stones[1][4],SOIL_SIZE*i-SOIL_SIZE*2, SOIL_SIZE*j);
+            }
+            
+          }
+
+        }
+        
+      }
+      
+      
+      for(int y=1;y<24;y++){
+        
+      soilEmptyY=y*SOIL_SIZE;
+      image(soilEmpty,soilEmptyX1,soilEmptyY);
+      
+      image(soilEmpty,soilEmptyX2,soilEmptyY);
+      }
+    
+
 		// Cabbages
 		// > Remember to check if playerHealth is smaller than PLAYER_MAX_HEALTH!
-
+    
+    image( cabbage,cabbageX,cabbageY1);
+    image( cabbage,cabbageX,cabbageY2);
+    image( cabbage,cabbageX,cabbageY3);
+    image( cabbage,cabbageX,cabbageY4);
+    image( cabbage,cabbageX,cabbageY5);
+ 
+    image( soldier,soldierX,soldierY1);
+    image( soldier,soldierX,soldierY2);
+    image( soldier,soldierX,soldierY3);
+    image( soldier,soldierX,soldierY4);
+    image( soldier,soldierX,soldierY5);
+    soldierX+=soldierSpeed;
+    if(soldierX>640){
+        soldierX=-80;
+      }
 		// Groundhog
 
 		PImage groundhogDisplay = groundhogIdle;
