@@ -23,18 +23,20 @@ final int START_BUTTON_Y = 360;
 //float[] cabbageX, cabbageY, soldierX, soldierY;
 
 float cabbageX=floor(random(0,8))*SOIL_SIZE;
-float cabbageY1=floor(random(0,4))*SOIL_SIZE;
-float cabbageY2=floor(random(5,9))*SOIL_SIZE;
-float cabbageY3=floor(random(10,14))*SOIL_SIZE;
-float cabbageY4=floor(random(15,19))*SOIL_SIZE;
-float cabbageY5=floor(random(20,24))*SOIL_SIZE;
+float cabbageY1=floor(random(0,3))*SOIL_SIZE;
+float cabbageY2=floor(random(4,7))*SOIL_SIZE;
+float cabbageY3=floor(random(8,11))*SOIL_SIZE;
+float cabbageY4=floor(random(12,15))*SOIL_SIZE;
+float cabbageY5=floor(random(16,19))*SOIL_SIZE;
+float cabbageY6=floor(random(20,24))*SOIL_SIZE;
 
 float soldierX=floor(random(0,8))*SOIL_SIZE;
-float soldierY1=floor(random(0,4))*SOIL_SIZE;
-float soldierY2=floor(random(5,9))*SOIL_SIZE;
-float soldierY3=floor(random(10,14))*SOIL_SIZE;
-float soldierY4=floor(random(15,19))*SOIL_SIZE;
-float soldierY5=floor(random(20,24))*SOIL_SIZE;
+float soldierY1=floor(random(0,3))*SOIL_SIZE;
+float soldierY2=floor(random(4,7))*SOIL_SIZE;
+float soldierY3=floor(random(8,11))*SOIL_SIZE;
+float soldierY4=floor(random(12,15))*SOIL_SIZE;
+float soldierY5=floor(random(16,19))*SOIL_SIZE;
+float soldierY6=floor(random(20,24))*SOIL_SIZE;
 float soldierSpeed = 2f;
 
 
@@ -237,7 +239,7 @@ void draw() {
             }else if(j%3 ==1){
               image(stones[1][4], SOIL_SIZE*i-SOIL_SIZE, SOIL_SIZE*j-SOIL_SIZE*2);
             }else{
-              image(stones[1][4],SOIL_SIZE*i-SOIL_SIZE*2, SOIL_SIZE*j);
+              image(stones[1][4],SOIL_SIZE*i-SOIL_SIZE*2, SOIL_SIZE*j-SOIL_SIZE*2);
             }
             
           }
@@ -264,16 +266,20 @@ void draw() {
     image( cabbage,cabbageX,cabbageY3);
     image( cabbage,cabbageX,cabbageY4);
     image( cabbage,cabbageX,cabbageY5);
+    image( cabbage,cabbageX,cabbageY6);
  
     image( soldier,soldierX,soldierY1);
     image( soldier,soldierX,soldierY2);
     image( soldier,soldierX,soldierY3);
     image( soldier,soldierX,soldierY4);
     image( soldier,soldierX,soldierY5);
+    image( cabbage,cabbageX,cabbageY6);
     soldierX+=soldierSpeed;
     if(soldierX>640){
         soldierX=-80;
       }
+   
+          
 		// Groundhog
 
 		PImage groundhogDisplay = groundhogIdle;
